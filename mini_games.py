@@ -74,7 +74,7 @@ for key, default in {
 # SIDEBAR NAVIGATION
 st.sidebar.title("🎮 Mini Game Hub")
 page = st.sidebar.radio(
-    "Choose a game:",
+    "Select:",
     ["🏠 Home", "🎲 Dice Duel", "☀️ Weather Predictor", "🚪 Monty Hall Game", "🪙 Coin Toss Game","🎈 Balloon Pop Game","🚗 Traffic Rush","🎆 Firefly Festival"]
 )
 st.session_state.page = page
@@ -605,5 +605,6 @@ elif page == "🎆 Firefly Festival":
 
 
     
+
 
 
