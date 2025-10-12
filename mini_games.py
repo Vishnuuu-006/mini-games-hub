@@ -3,14 +3,13 @@ import random
 import time
 import numpy as np
 
-# ============================
 # PAGE CONFIG
-# ============================
+
 st.set_page_config(page_title="🎮 Mini Game Hub", page_icon="🎲", layout="centered")
 
-# ============================
+
 # CUSTOM CSS (NEON THEME)
-# ============================
+
 st.markdown("""
     <style>
     .stApp, .block-container, body {
@@ -58,9 +57,9 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# ============================
+
 # SESSION INITIALIZATION
-# ============================
+
 for key, default in {
     "page": "Home",
     "p1_score": 0, "p2_score": 0, "rounds_dice": 0,
@@ -72,19 +71,17 @@ for key, default in {
     if key not in st.session_state:
         st.session_state[key] = default
 
-# ============================
 # SIDEBAR NAVIGATION
-# ============================
 st.sidebar.title("🎮 Mini Game Hub")
 page = st.sidebar.radio(
     "Choose a game:",
-    ["🏠 Home", "🎲 Dice Duel", "☀️ Weather Predictor", "🚪 Monty Hall Game", "🪙 Coin Toss Game","🎈 Balloon Pop Game","🚗 Traffic Rush"]
+    ["🏠 Home", "🎲 Dice Duel", "☀️ Weather Predictor", "🚪 Monty Hall Game", "🪙 Coin Toss Game","🎈 Balloon Pop Game","🚗 Traffic Rush","🎆 Firefly Festival"]
 )
 st.session_state.page = page
 
-# ============================
+
 # HOME PAGE
-# ============================
+
 if page == "🏠 Home":
     st.title("🎮 Welcome to Mini Game Hub")
     st.write("Choose a fun mini-game to play!")
@@ -99,9 +96,9 @@ if page == "🏠 Home":
     st.markdown("---")
     st.info("Select a game from the left sidebar to start playing!")
 
-# ============================
-# 🎲 DICE DUEL (ANIMATED VERSION)
-# ============================
+
+# 🎲 DICE DUEL
+
 elif page == "🎲 Dice Duel":
     st.title("🎲 Dice Duel Game")
     st.subheader("Roll the dice and see who wins each round! (Now with animation!)")
@@ -185,13 +182,15 @@ elif page == "🎲 Dice Duel":
     st.markdown("---")
     st.subheader("📊 Probability Insight")
     st.write("""
-    - Each die has 6 faces, equally likely — **Uniform(1,6)** distribution.  
-    - The chance of either player winning is roughly **50%**, but ties happen 1/6 of the time.  
-    - Over many rounds, scores should stay close — randomness in action!
-    """)
-# ============================
-# 🌦️ ANIMATED WEATHER PREDICTOR
-# ============================
+- A die has **6 equally likely faces** → Uniform(1,6).  
+- The probability of any number (1–6) is **1/6 ≈ 16.7%**.  
+- The probability of a draw is **1/6**, since both must roll the same number.  
+- Over many rounds, the win rates of both players should stay *close to 50–50*.  
+- This shows **equiprobable outcomes** — where all possibilities are equally likely.
+""")
+
+# 🌦️WEATHER PREDICTOR
+
 elif page == "☀️ Weather Predictor":
     st.title("🌦️ Weather Predictor Game")
     st.subheader("Test your weather prediction skills — now with animation! ⛅")
@@ -246,9 +245,18 @@ elif page == "☀️ Weather Predictor":
         st.session_state.weather_rounds = 0
         st.session_state.weather_anim_state = "⛅"
         st.rerun()
+    st.markdown("---")
+    st.subheader("📊 Probability Insight")
+    st.write(f"""
+- The slider sets the **probability of rain** (p = {rain_prob/100:.2f}).  
+- Each prediction is a **Bernoulli trial**: either Rain (1) or No Rain (0).  
+- Each trial is **independent** — past results don’t affect the next.  
+- Over many plays, the proportion of rainy outcomes will approach *p*.  
+- This is a visual form of the **Law of Large Numbers**.
+""")
 
-#ANIMATED MONTY HALL GAME
-# ============================
+#🚪 MONTY HALL GAME
+
 elif page == "🚪 Monty Hall Game":
     st.title("🚪 The Monty Hall Game (Animated & Fixed)")
     st.subheader("Pick a door, stay or switch, and see if you win the 🚗!")
@@ -342,13 +350,15 @@ elif page == "🚪 Monty Hall Game":
     st.markdown("---")
     st.subheader("📊 Probability Insight")
     st.write("""
-    - Initially, your chance of picking the car is **1/3**.  
-    - After Monty opens a goat door, switching gives you a **2/3** chance of winning.  
-    - The animation above shows how the host always removes one losing door!
-    """)
-# ============================
-# ANIMATED COIN TOSS GAME
-# ============================
+- You first choose 1 of 3 doors → **1/3 chance** of picking the car.  
+- Monty then opens a door with a goat, but never the car.  
+- That means the *other unopened door* holds a **2/3 chance** of the car.  
+- So switching doors *doubles your chance of winning* — from 1/3 to 2/3.  
+- This demonstrates **conditional probability** — how knowing new info changes odds.
+""")
+    
+#COIN TOSS GAME
+
 elif page == "🪙 Coin Toss Game":
     st.title("🪙 Animated Coin Toss")
     st.subheader("Flip the coin and test your luck! 🎯")
@@ -396,16 +406,15 @@ elif page == "🪙 Coin Toss Game":
     # Probability section
     st.markdown("---")
     st.subheader("📊 Probability Insight")
-    st.write(
-        """
-        - Each toss has **50% chance** of landing on **Heads** or **Tails**.  
-        - The outcome is random and independent of previous flips.  
-        - The animation simulates real-world coin flipping randomness.
-        """
-    )
-# ============================
-# BALLOON POP GAME (Animated)
-# ============================
+    st.write("""
+- Each toss has 2 possible outcomes → Heads or Tails.  
+- Both are equally likely → **P(Heads) = P(Tails) = 0.5**.  
+- Each toss is **independent** — the coin doesn’t remember its last result.  
+- Over many flips, the outcomes will roughly balance (≈50–50).  
+- This demonstrates **independent and identically distributed events (i.i.d)**.
+""")
+# BALLOON POP GAME
+
 elif page == "🎈 Balloon Pop Game":
     st.title("🎈 Balloon Pop Probability Game")
     st.subheader("Pump carefully — each pump increases the chance of it popping!")
@@ -481,10 +490,18 @@ elif page == "🎈 Balloon Pop Game":
     st.subheader("📊 Balloon Stats")
     st.metric("Pumps", st.session_state.balloon_pumps)
     st.metric("Score", st.session_state.balloon_score)
-    
-# ============================
+
+    st.markdown("---")
+    st.subheader("📊 Probability Insight")
+    st.write("""
+- Each balloon has a **chance p** of popping when tapped.  
+- Over n balloons, the total number popped follows a **Binomial(n, p)** distribution.  
+- The average number of pops = n·p.  
+- This shows how multiple independent events combine into predictable patterns.
+""")
+
 # 🚗 TRAFFIC RUSH (POISSON RANDOM)
-# ============================
+
 elif page == "🚗 Traffic Rush":
     st.title("🚗 Traffic Rush Game")
     st.subheader("Guess how many cars will pass this minute!")
@@ -534,7 +551,58 @@ elif page == "🚗 Traffic Rush":
     st.markdown("---")
     st.subheader("📊 Probability Insight")
     st.write("""
-    - Car arrivals often follow a **Poisson process**, representing rare, independent events.  
-    - The mean `λ` is the expected number of events per interval.  
-    - The actual count varies randomly around λ, often close but not exact!
-    """)
+- The number of cars per minute follows a **Poisson(λ)** distribution.  
+- λ (lambda) = average cars per minute → sets how busy the road is.  
+- The Poisson model assumes:
+  1. Cars arrive *independently*.  
+  2. Two cars don’t arrive at exactly the same instant.  
+  3. The average rate λ stays constant.  
+- Great example of **rare event counting** in real life.
+""")
+
+
+
+# 🎆 FIREFLY FESTIVAL (POISSON FLASHES)
+
+elif page == "🎆 Firefly Festival":
+    st.title("🎆 Firefly Festival")
+    st.subheader("Watch the fireflies blink randomly in the night sky 🌌")
+
+    lam = st.slider("Average flashes per second (λ):", 1, 10, 3)
+    duration = st.slider("Simulation duration (seconds):", 2, 10, 5)
+
+    sky = st.empty()
+
+    if st.button("🌟 Start Show"):
+        st.info("Fireflies appearing...")
+        total_flashes = 0
+        with sky.container():
+            for t in range(duration):
+                flashes = np.random.poisson(lam)
+                total_flashes += flashes
+                sky.markdown(
+                    "<h1 style='text-align:center'>" + "✨" * flashes + "</h1>",
+                    unsafe_allow_html=True
+                )
+                time.sleep(0.7)
+
+        st.success(f"Show ended! Total flashes: **{total_flashes}** ✨")
+        st.balloons()
+
+    if st.button("🔁 Restart Festival"):
+        sky.empty()
+        st.rerun()
+
+    st.markdown("---")
+st.subheader("📊 Probability Insight")
+st.write("""
+- The number of cars per minute follows a **Poisson(λ)** distribution.  
+- λ (lambda) = average cars per minute → sets how busy the road is.  
+- The Poisson model assumes:
+  1. Cars arrive *independently*.  
+  2. Two cars don’t arrive at exactly the same instant.  
+  3. The average rate λ stays constant.  
+- Great example of **rare event counting** in real life.
+""")
+
+    
