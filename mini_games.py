@@ -592,17 +592,16 @@ elif page == "🎆 Firefly Festival":
     if st.button("🔁 Restart Festival"):
         sky.empty()
         st.rerun()
-
     st.markdown("---")
-st.subheader("📊 Probability Insight")
-st.write("""
-- The number of cars per minute follows a **Poisson(λ)** distribution.  
-- λ (lambda) = average cars per minute → sets how busy the road is.  
-- The Poisson model assumes:
-  1. Cars arrive *independently*.  
-  2. Two cars don’t arrive at exactly the same instant.  
-  3. The average rate λ stays constant.  
-- Great example of **rare event counting** in real life.
+    st.subheader("📊 Probability Insight")
+    st.write("""
+- Each flash of a firefly is random but happens at a steady average rate λ.  
+- The count per second follows **Poisson(λ)** — random but centered around λ.  
+- Some seconds have many flashes, others have few — that’s the beauty of randomness!  
+- Poisson distribution models **events per interval** — time, area, or volume.  
+- Common examples: phone calls per minute, decay events, raindrops, etc.
 """)
 
+
     
+
