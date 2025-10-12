@@ -93,6 +93,7 @@ if page == "🏠 Home":
     st.write("🪙 **Coin Toss Predictor** — Guess heads or tails and earn points!")
     st.write("🎈 Balloon Pop Game-Pump the balloon till the maximum level")
     st.write("🚗 Traffic Rush-Predict the number of cars passing through and earn points")
+    st.write("🎆 Firefly Festival-predict the number of firefly blinks and earn points")
     st.markdown("---")
     st.info("Select a game from the left sidebar to start playing!")
 
@@ -604,4 +605,5 @@ elif page == "🎆 Firefly Festival":
 
 
     
+
 
