@@ -57,6 +57,27 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
+st.markdown("""
+<style>
+/* Hide default collapse arrow */
+[title="Collapse"] {
+    visibility: hidden !important;
+}
+
+/* Add custom clickable "Click Here" at top-left */
+.custom-click {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 16px;
+    color: #00ccff;
+    font-weight: bold;
+    cursor: pointer;
+    text-shadow: 0 0 8px #0099ff;
+}
+</style>
+<div class="custom-click" onclick="document.querySelector('section[data-testid=stSidebar]').classList.toggle('collapsed')">Click Here</div>
+""", unsafe_allow_html=True)
 
 # SESSION INITIALIZATION
 
@@ -605,6 +626,7 @@ elif page == "🎆 Firefly Festival":
 
 
     
+
 
 
 
