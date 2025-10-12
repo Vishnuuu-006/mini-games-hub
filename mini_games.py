@@ -7,6 +7,34 @@ import numpy as np
 
 st.set_page_config(page_title="🎮 Mini Game Hub", page_icon="🎲", layout="centered")
 
+st.markdown("""
+<style>
+/* Hide default sidebar toggle (arrow) */
+[data-testid="stSidebarCollapse"] {
+    visibility: hidden !important;
+}
+
+/* Custom clickable "Click Here" button */
+.custom-click {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+    font-size: 16px;
+    color: #00ccff;
+    font-weight: bold;
+    cursor: pointer;
+    text-shadow: 0 0 8px #0099ff;
+    background: rgba(0,0,0,0.5);
+    padding: 5px 10px;
+    border-radius: 8px;
+}
+</style>
+
+<div class="custom-click" onclick="document.querySelector('section[data-testid=stSidebar]').classList.toggle('collapsed')">
+Click Here
+</div>
+""", unsafe_allow_html=True)
 
 # CUSTOM CSS (NEON THEME)
 
@@ -55,29 +83,6 @@ st.markdown("""
         border-right: 1px solid #003366;
     }
     </style>
-""", unsafe_allow_html=True)
-
-st.markdown("""
-<style>
-/* Hide default mobile sidebar toggle */
-[data-testid="stSidebarCollapse"] {
-    visibility: hidden !important;
-}
-
-/* Custom clickable "Click Here" */
-.custom-click {
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    z-index: 1000;
-    font-size: 16px;
-    color: #00ccff;
-    font-weight: bold;
-    cursor: pointer;
-    text-shadow: 0 0 8px #0099ff;
-}
-</style>
-<div class="custom-click" onclick="document.querySelector('section[data-testid=stSidebar]').classList.toggle('collapsed')">Click Here</div>
 """, unsafe_allow_html=True)
 
 # SESSION INITIALIZATION
@@ -627,6 +632,7 @@ elif page == "🎆 Firefly Festival":
 
 
     
+
 
 
 
