@@ -59,16 +59,17 @@ st.markdown("""
 
 st.markdown("""
 <style>
-/* Hide default collapse arrow */
-[title="Collapse"] {
+/* Hide default mobile sidebar toggle */
+[data-testid="stSidebarCollapse"] {
     visibility: hidden !important;
 }
 
-/* Add custom clickable "Click Here" at top-left */
+/* Custom clickable "Click Here" */
 .custom-click {
-    position: absolute;
+    position: fixed;
     top: 10px;
     left: 10px;
+    z-index: 1000;
     font-size: 16px;
     color: #00ccff;
     font-weight: bold;
@@ -626,6 +627,7 @@ elif page == "🎆 Firefly Festival":
 
 
     
+
 
 
 
