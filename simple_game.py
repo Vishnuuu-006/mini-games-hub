@@ -2,6 +2,112 @@ import streamlit as st
 import random
 import time
 
+
+st.markdown("""
+    <style>
+    /* GLOBAL BACKGROUND */
+    .stApp, .block-container, body {
+        background-color: #000000 !important;
+        color: #9ad5ff !important;
+    }
+
+    /* OVERRIDE all text everywhere */
+    html, body, p, span, div, label, li, ul, ol, input, textarea, select {
+        color: #9ad5ff !important;
+        font-family: 'Monospace', sans-serif !important;
+    }
+
+    /* HEADINGS - glowing blue */
+    h1, h2, h3, h4, h5, h6 {
+        color: #b3e0ff !important;
+        text-align: center;
+        text-shadow: 0 0 10px #00aaff, 0 0 25px #0088ff;
+        font-family: 'Orbitron', monospace;
+    }
+
+    /* Pulsing title animation */
+    .neon-text {
+        animation: pulse 3s infinite;
+    }
+    @keyframes pulse {
+        0% { text-shadow: 0 0 8px #00ccff, 0 0 15px #0099ff; }
+        50% { text-shadow: 0 0 25px #00ccff, 0 0 50px #0099ff; }
+        100% { text-shadow: 0 0 8px #00ccff, 0 0 15px #0099ff; }
+    }
+
+    /* BUTTONS */
+    .stButton>button {
+        background: linear-gradient(90deg, #0077ff, #00ccff);
+        color: #e6faff !important;
+        border-radius: 10px;
+        border: none;
+        font-size: 17px;
+        font-weight: bold;
+        box-shadow: 0 0 10px #00aaff;
+        transition: all 0.3s ease-in-out;
+    }
+    .stButton>button:hover {
+        transform: scale(1.08);
+        box-shadow: 0 0 25px #00ccff;
+        background: linear-gradient(90deg, #0099ff, #00ddff);
+    }
+
+    /* TEXT INPUTS, SELECT BOXES */
+    .stTextInput>div>div>input,
+    .stSelectbox div[data-baseweb="select"] > div,
+    .stTextArea>div>textarea {
+        background-color: #0d0d0d !important;
+        color: #9ad5ff !important;
+        border: 1px solid #00aaff !important;
+        border-radius: 6px;
+        padding: 5px;
+    }
+
+    /* RADIO BUTTONS & CHECKBOXES */
+    .stRadio label, .stCheckbox label, .stSelectbox label {
+        color: #9ad5ff !important;
+    }
+
+    /* METRIC BOXES (SCOREBOARD) */
+    [data-testid="stMetricValue"], [data-testid="stMetricLabel"] {
+        color: #00ccff !important;
+        text-shadow: 0 0 8px #0099ff;
+    }
+
+    /* PROGRESS & STATUS TEXTS */
+    .stProgress .st-bo {
+        background-color: #00aaff !important;
+    }
+
+    /* EXPANDERS */
+    .streamlit-expanderHeader {
+        background-color: #0d0d0d !important;
+        color: #9ad5ff !important;
+    }
+
+    /* DIVIDERS */
+    hr {
+        border: 1px solid #003366 !important;
+    }
+
+    /* SIDEBAR */
+    section[data-testid="stSidebar"] {
+        background-color: #000000 !important;
+        color: #9ad5ff !important;
+        border-right: 1px solid #003366;
+    }
+
+    /* SMOOTH FADE-IN */
+    .stApp {
+        animation: fadeIn 1.3s ease-in;
+    }
+    @keyframes fadeIn {
+        0% {opacity: 0;}
+        100% {opacity: 1;}
+    }
+    </style>
+""", unsafe_allow_html=True)
+
 #PAGE CONFIG
 st.set_page_config(page_title="🎮 Mini Game Hub", page_icon="🎲", layout="centered")
 
@@ -37,6 +143,7 @@ if page == "🏠 Home":
     st.info("Select a game from the left sidebar to start playing!")
 
 #DICE DUEL GAME
+
 elif page == "🎲 Dice Duel":
     st.title("🎲 Dice Duel Game")
     st.subheader("Roll the dice and see who wins each round!")
