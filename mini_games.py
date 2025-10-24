@@ -4,36 +4,35 @@ import time
 import numpy as np
 
 # PAGE CONFIG
-
 st.set_page_config(page_title="🎮 Mini Game Hub", page_icon="🎲", layout="centered")
 
+# CUSTOM CSS
 st.markdown("""
-<style>
-/* Hide default sidebar toggle (arrow) */
-[data-testid="stSidebarCollapse"] {
-    visibility: hidden !important;
-}
+    <style>
+    /* Hide the default sidebar toggle icon */
+    button[kind="header"] div[data-testid="stSidebarNavIcon"] svg {
+        display: none;
+    }
 
-/* Custom clickable "Click Here" button */
-.custom-click {
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    z-index: 1000;
-    font-size: 16px;
-    color: #00ccff;
-    font-weight: bold;
-    cursor: pointer;
-    text-shadow: 0 0 8px #0099ff;
-    background: rgba(0,0,0,0.5);
-    padding: 5px 10px;
-    border-radius: 8px;
-}
-</style>
+    /* Replace icon area with text */
+    button[kind="header"] div[data-testid="stSidebarNavIcon"]::after {
+        content: "Click here 👈";
+        font-weight: bold;
+        font-size: 16px;
+        color: #00FFFF;  /* neon cyan */
+        text-shadow: 0 0 10px #00FFFF, 0 0 20px #00CCFF;
+        position: relative;
+        top: 2px;
+        left: 2px;
+    }
 
-<div class="custom-click" onclick="document.querySelector('section[data-testid=stSidebar]').classList.toggle('collapsed')">
-Click Here
-</div>
+    /* Hover animation */
+    button[kind="header"] div[data-testid="stSidebarNavIcon"]:hover::after {
+        color: #FF00FF;  /* neon pink on hover */
+        text-shadow: 0 0 15px #FF00FF, 0 0 30px #FF66FF;
+        transition: all 0.3s ease-in-out;
+    }
+    </style>
 """, unsafe_allow_html=True)
 
 # CUSTOM CSS (NEON THEME)
@@ -632,6 +631,7 @@ elif page == "🎆 Firefly Festival":
 
 
     
+
 
 
 
