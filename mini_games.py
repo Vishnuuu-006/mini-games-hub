@@ -9,7 +9,7 @@ import numpy as np
 st.set_page_config(page_title="🎮 Mini Game Hub", page_icon="🦇", layout="wide")
 
 
-# CUSTOM CSS (NEON THEME)
+# CSS
 
 st.markdown("""
     <style>
@@ -612,6 +612,7 @@ elif page == "🎆 Firefly Festival":
 
 
     
+
 
 
 
