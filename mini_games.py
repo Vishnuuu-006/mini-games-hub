@@ -89,6 +89,7 @@ if page == "🏠 Home":
             Explore concepts of <b>Probability</b> and <b>Data Science</b> in the most fun way possible! 🎲🌦️🚪
         </p>
     """, unsafe_allow_html=True)
+    st.subheader("🎮Click on Top left side to access SIDEBAR")
 
 
     # Game List
@@ -611,6 +612,7 @@ elif page == "🎆 Firefly Festival":
 
 
     
+
 
 
 
