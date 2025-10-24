@@ -107,19 +107,72 @@ st.session_state.page = page
 
 
 # HOME PAGE
-
 if page == "🏠 Home":
     st.title("🎮 Welcome to Mini Game Hub")
     st.write("Choose a fun mini-game to play!")
+
+    # "Click Here to Play Games" Button
+    if st.button("🎮 Click Here to Play Games 👈"):
+        st.session_state.open_sidebar = True
+
+    # Sidebar auto-open JavaScript
+    if "open_sidebar" not in st.session_state:
+        st.session_state.open_sidebar = False
+
+    if st.session_state.open_sidebar:
+        import streamlit.components.v1 as components
+        js = """
+        <script>
+        (function(){
+          function clickToggle(){
+            var selectors = [
+              'button[aria-label="Toggle sidebar"]',
+              'button[title="Toggle sidebar"]',
+              'button[aria-label="Toggle navigation"]',
+              'div[data-testid="stSidebarNavIcon"]',
+              'button[aria-label="Open sidebar"]',
+              'button[title="Open sidebar"]'
+            ];
+            for (var i = 0; i < selectors.length; i++){
+              try {
+                var el = document.querySelector(selectors[i]);
+                if (el){
+                  if (el.tagName.toLowerCase() === 'div') {
+                    var btn = el.closest('button');
+                    if (btn) { btn.click(); return; }
+                  } else {
+                    el.click();
+                    return;
+                  }
+                }
+              } catch(e){}
+            }
+            try {
+              var svgs = document.querySelectorAll('svg');
+              for (var j = 0; j < svgs.length; j++){
+                var btn = svgs[j].closest('button');
+                if (btn){
+                  btn.click();
+                  return;
+                }
+              }
+            } catch(e){}
+          }
+          setTimeout(clickToggle, 80);
+        })();
+        </script>
+        """
+        components.html(js, height=0, width=0)
+        st.session_state.open_sidebar = False
+
     st.markdown("---")
     st.subheader("Available Games:")
     st.write("🎲 **Dice Duel** — Challenge a friend to a dice battle.")
     st.write("☀️ **Weather Predictor** — Test your forecasting skills.")
-    st.write("🚪 **Monty Hall Game** — Pick a door and test your luck (and logic)!")
-    st.write("🪙 **Coin Toss Predictor** — Guess heads or tails and earn points!")
-    st.write("🎈 Balloon Pop Game-Pump the balloon till the maximum level")
-    st.write("🚗 Traffic Rush-Predict the number of cars passing through and earn points")
-    st.write("🎆 Firefly Festival-predict the number of firefly blinks and earn points")
+    st.write("🚪 **Monty Hall Challenge** — Choose wisely and test your logic.")
+    st.write("🪙 **Coin Toss Animation** — Experience randomness visually.")
+    st.write("🚗 **Traffic Rush** — Poisson arrival simulation.")
+    st.write("🎆 **Firefly Festival** — Random bursts inspired by Poisson events.")
     st.markdown("---")
     st.info("Select a game from the left sidebar to start playing!")
 
@@ -631,6 +684,7 @@ elif page == "🎆 Firefly Festival":
 
 
     
+
 
 
 
