@@ -6,10 +6,7 @@ import numpy as np
 
 
 # 1️⃣ Page config
-st.set_page_config(page_title="🎮 Mini Game Hub", page_icon="🎲", layout="wide")
-
-# 2️⃣ Title
-st.title("🎮 Welcome to Mini Game Hub")
+st.set_page_config(page_title="🎮 Mini Game Hub", page_icon="🦇", layout="wide")
 
 
 # CUSTOM CSS (NEON THEME)
@@ -101,9 +98,11 @@ if page == "🏠 Home":
     st.write("🌦️ **Weather Predictor** — Guess the weather and earn points!")
     st.write("🚪 **Monty Hall Challenge** — A probability twist game based on the famous puzzle!")
     st.write("🪙 **Coin Flip Animation** — Experience randomness in motion!")
-    st.write("📈 **Poisson Games** — Fun simulations based on the Poisson distribution!")
+    st.write("🎈**Balloon Pop** — Fun simulations by pumping the balloon with certain probability!")
+    st.write("🚗**Traffic Rush**-Fun game with determining the no.of cars passing with the intuition of Poisson Distribution!")
+    st.write("🎇**Firefly Festival*-Fun game with determining the no.of flashes with Poisson Distribution!")
     st.markdown("---")
-    st.info("👉 Use the sidebar (or click the button above) to choose a game and start playing!")
+    st.info("👉 Click the top left bar to choose a game and start playing!")
 
 # 🎲 DICE DUEL
 
@@ -612,6 +611,7 @@ elif page == "🎆 Firefly Festival":
 
 
     
+
 
 
 
