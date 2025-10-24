@@ -11,42 +11,6 @@ st.set_page_config(page_title="🎮 Mini Game Hub", page_icon="🎲", layout="wi
 # 2️⃣ Title
 st.title("🎮 Welcome to Mini Game Hub")
 
-# 3️⃣ Custom button + sidebar-opening logic
-st.markdown("""
-    <style>
-    .stButton button {
-        background-color: #00ccff;
-        color: white;
-        border-radius: 12px;
-        font-size: 18px;
-        padding: 10px 20px;
-        box-shadow: 0 0 10px #00aaff;
-        transition: all 0.3s ease;
-    }
-    .stButton button:hover {
-        background-color: #0099cc;
-        transform: scale(1.05);
-    }
-    </style>
-""", unsafe_allow_html=True)
-
-if st.button("🎮 Click Here to Play Games 👈"):
-    st.markdown("""
-        <script>
-        const openSidebar = () => {
-            const shadowRoot = document.querySelector("body > div:first-child")?.shadowRoot;
-            const sidebarToggle = shadowRoot?.querySelector("button[data-testid='stSidebarCollapseButton']");
-            if (sidebarToggle) {
-                sidebarToggle.click();
-            } else {
-                alert("Sidebar toggle not accessible on this device. Please use the arrow on the left.");
-            }
-        };
-        setTimeout(openSidebar, 100);
-        </script>
-    """, unsafe_allow_html=True)
-
-
 
 # CUSTOM CSS (NEON THEME)
 
@@ -129,42 +93,8 @@ if page == "🏠 Home":
         </p>
     """, unsafe_allow_html=True)
 
-    # Custom Button Style
-    st.markdown("""
-        <style>
-        .stButton button {
-            display: block;
-            margin: 30px auto;
-            background: linear-gradient(90deg, #0077ff, #00ccff);
-            color: #e6faff !important;
-            border-radius: 12px;
-            border: none;
-            font-size: 20px;
-            font-weight: bold;
-            padding: 14px 36px;
-            box-shadow: 0 0 20px #00aaff;
-            transition: all 0.3s ease-in-out;
-        }
-        .stButton button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 30px #00ccff;
-            background: linear-gradient(90deg, #0099ff, #00ddff);
-        }
-        </style>
-    """, unsafe_allow_html=True)
 
-    # Main Button to Open Sidebar
-    if st.button("🎯 Click Here to Play Games 👈"):
-        st.markdown("""
-            <script>
-            setTimeout(() => {
-                const sidebarToggle = parent.document.querySelector('button[kind="icon"]');
-                if (sidebarToggle) sidebarToggle.click();
-            }, 300);
-            </script>
-        """, unsafe_allow_html=True)
-
-    # Game List (for better UI)
+    # Game List
     st.markdown("---")
     st.subheader("🎮 Available Games:")
     st.write("🎲 **Dice Duel** — Roll the dice and challenge your friend!")
@@ -682,6 +612,7 @@ elif page == "🎆 Firefly Festival":
 
 
     
+
 
 
 
