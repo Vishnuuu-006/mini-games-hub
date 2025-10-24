@@ -4,37 +4,49 @@ import random
 import time
 import numpy as np
 
-# PAGE CONFIG
-st.set_page_config(page_title="🎮 Mini Game Hub", page_icon="🎲", layout="centered")
 
-# CUSTOM CSS
+# 1️⃣ Page config
+st.set_page_config(page_title="🎮 Mini Game Hub", page_icon="🎲", layout="wide")
+
+# 2️⃣ Title
+st.title("🎮 Welcome to Mini Game Hub")
+
+# 3️⃣ Custom button + sidebar-opening logic
 st.markdown("""
     <style>
-    /* Hide the default sidebar toggle icon */
-    button[kind="header"] div[data-testid="stSidebarNavIcon"] svg {
-        display: none;
+    .stButton button {
+        background-color: #00ccff;
+        color: white;
+        border-radius: 12px;
+        font-size: 18px;
+        padding: 10px 20px;
+        box-shadow: 0 0 10px #00aaff;
+        transition: all 0.3s ease;
     }
-
-    /* Replace icon area with text */
-    button[kind="header"] div[data-testid="stSidebarNavIcon"]::after {
-        content: "Click here 👈";
-        font-weight: bold;
-        font-size: 16px;
-        color: #00FFFF;  /* neon cyan */
-        text-shadow: 0 0 10px #00FFFF, 0 0 20px #00CCFF;
-        position: relative;
-        top: 2px;
-        left: 2px;
-    }
-
-    /* Hover animation */
-    button[kind="header"] div[data-testid="stSidebarNavIcon"]:hover::after {
-        color: #FF00FF;  /* neon pink on hover */
-        text-shadow: 0 0 15px #FF00FF, 0 0 30px #FF66FF;
-        transition: all 0.3s ease-in-out;
+    .stButton button:hover {
+        background-color: #0099cc;
+        transform: scale(1.05);
     }
     </style>
 """, unsafe_allow_html=True)
+
+if st.button("🎮 Click Here to Play Games 👈"):
+    st.markdown("""
+        <script>
+        const openSidebar = () => {
+            const shadowRoot = document.querySelector("body > div:first-child")?.shadowRoot;
+            const sidebarToggle = shadowRoot?.querySelector("button[data-testid='stSidebarCollapseButton']");
+            if (sidebarToggle) {
+                sidebarToggle.click();
+            } else {
+                alert("Sidebar toggle not accessible on this device. Please use the arrow on the left.");
+            }
+        };
+        setTimeout(openSidebar, 100);
+        </script>
+    """, unsafe_allow_html=True)
+
+
 
 # CUSTOM CSS (NEON THEME)
 
@@ -109,47 +121,59 @@ st.session_state.page = page
 
 # HOME PAGE
 if page == "🏠 Home":
-    st.title("🎮 Welcome to Mini Game Hub")
-    st.write("Choose a fun mini-game to play!")
+    st.markdown("""
+        <h1 class="neon-text" style='text-align:center;'>🎮 Welcome to the Mini Game Hub!</h1>
+        <p style='text-align:center; font-size:18px; color:#b3e0ff;'>
+            Dive into interactive games built with <b>Python + Streamlit</b> 💻<br>
+            Explore concepts of <b>Probability</b> and <b>Data Science</b> in the most fun way possible! 🎲🌦️🚪
+        </p>
+    """, unsafe_allow_html=True)
 
-    # Button to trigger sidebar-like game list
-    show_games = st.button("🎮 Click Here to Play Games 👈")
-
-    if show_games:
-        st.markdown("""
-        <div style="
-            border: 2px solid #00ccff;
-            border-radius: 12px;
-            padding: 20px;
-            background-color: rgba(0, 10, 30, 0.85);
-            box-shadow: 0 0 20px #00aaff;
-            animation: fadeIn 1s ease-in-out;
-        ">
-            <h3 style="color:#b3e0ff; text-shadow:0 0 10px #00ccff;">🎮 Choose Your Game</h3>
-            <ul style="list-style:none; line-height:2;">
-                <li>🎲 <b>Dice Duel</b> — Challenge a friend to a dice battle</li>
-                <li>☀️ <b>Weather Predictor</b> — Test your forecasting skills</li>
-                <li>🚪 <b>Monty Hall Challenge</b> — Make the right switch!</li>
-                <li>🪙 <b>Coin Toss Animation</b> — Experience random outcomes</li>
-                <li>🚗 <b>Traffic Rush</b> — Simulate Poisson arrivals</li>
-                <li>🎆 <b>Firefly Festival</b> — Random Poisson light bursts</li>
-            </ul>
-            <p style="color:#9ad5ff;">Use the sidebar (on the left) to select and start playing!</p>
-        </div>
+    # Custom Button Style
+    st.markdown("""
         <style>
-        @keyframes fadeIn {
-            from {opacity: 0;}
-            to {opacity: 1;}
+        .stButton button {
+            display: block;
+            margin: 30px auto;
+            background: linear-gradient(90deg, #0077ff, #00ccff);
+            color: #e6faff !important;
+            border-radius: 12px;
+            border: none;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 14px 36px;
+            box-shadow: 0 0 20px #00aaff;
+            transition: all 0.3s ease-in-out;
+        }
+        .stButton button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px #00ccff;
+            background: linear-gradient(90deg, #0099ff, #00ddff);
         }
         </style>
+    """, unsafe_allow_html=True)
+
+    # Main Button to Open Sidebar
+    if st.button("🎯 Click Here to Play Games 👈"):
+        st.markdown("""
+            <script>
+            setTimeout(() => {
+                const sidebarToggle = parent.document.querySelector('button[kind="icon"]');
+                if (sidebarToggle) sidebarToggle.click();
+            }, 300);
+            </script>
         """, unsafe_allow_html=True)
-    else:
-        st.markdown("---")
-        st.subheader("Available Games:")
-        st.write("🎲 **Dice Duel** — Challenge a friend to a dice battle.")
-        st.write("☀️ **Weather Predictor** — Test your forecasting skills.")
-        st.markdown("---")
-        st.info("Select a game from the left sidebar to start playing!")
+
+    # Game List (for better UI)
+    st.markdown("---")
+    st.subheader("🎮 Available Games:")
+    st.write("🎲 **Dice Duel** — Roll the dice and challenge your friend!")
+    st.write("🌦️ **Weather Predictor** — Guess the weather and earn points!")
+    st.write("🚪 **Monty Hall Challenge** — A probability twist game based on the famous puzzle!")
+    st.write("🪙 **Coin Flip Animation** — Experience randomness in motion!")
+    st.write("📈 **Poisson Games** — Fun simulations based on the Poisson distribution!")
+    st.markdown("---")
+    st.info("👉 Use the sidebar (or click the button above) to choose a game and start playing!")
 
 # 🎲 DICE DUEL
 
@@ -658,6 +682,7 @@ elif page == "🎆 Firefly Festival":
 
 
     
+
 
 
 
