@@ -1,4 +1,5 @@
 import streamlit as st
+import streamlit.components.v1 as components
 import random
 import time
 import numpy as np
@@ -111,59 +112,24 @@ if page == "🏠 Home":
     st.title("🎮 Welcome to Mini Game Hub")
     st.write("Choose a fun mini-game to play!")
 
-    # "Click Here to Play Games" Button
+    # Sidebar auto-open trigger
     if st.button("🎮 Click Here to Play Games 👈"):
-        st.session_state.open_sidebar = True
-
-    # Sidebar auto-open JavaScript
-    if "open_sidebar" not in st.session_state:
-        st.session_state.open_sidebar = False
-
-    if st.session_state.open_sidebar:
-        import streamlit.components.v1 as components
-        js = """
+        # Inject JavaScript to click sidebar toggle button
+        components.html("""
         <script>
-        (function(){
-          function clickToggle(){
-            var selectors = [
-              'button[aria-label="Toggle sidebar"]',
-              'button[title="Toggle sidebar"]',
-              'button[aria-label="Toggle navigation"]',
-              'div[data-testid="stSidebarNavIcon"]',
-              'button[aria-label="Open sidebar"]',
-              'button[title="Open sidebar"]'
-            ];
-            for (var i = 0; i < selectors.length; i++){
-              try {
-                var el = document.querySelector(selectors[i]);
-                if (el){
-                  if (el.tagName.toLowerCase() === 'div') {
-                    var btn = el.closest('button');
-                    if (btn) { btn.click(); return; }
-                  } else {
-                    el.click();
-                    return;
-                  }
-                }
-              } catch(e){}
-            }
-            try {
-              var svgs = document.querySelectorAll('svg');
-              for (var j = 0; j < svgs.length; j++){
-                var btn = svgs[j].closest('button');
-                if (btn){
-                  btn.click();
-                  return;
-                }
-              }
-            } catch(e){}
+        const interval = setInterval(() => {
+          // Find the sidebar toggle button by aria-label
+          const btn = window.parent.document.querySelector('button[title="Toggle sidebar"]')
+              || window.parent.document.querySelector('button[aria-label="Toggle sidebar"]')
+              || window.parent.document.querySelector('button[title="Open sidebar"]');
+          if (btn) {
+            btn.click(); // simulate click
+            clearInterval(interval); // stop trying
           }
-          setTimeout(clickToggle, 80);
-        })();
+        }, 100);
         </script>
-        """
-        components.html(js, height=0, width=0)
-        st.session_state.open_sidebar = False
+        """, height=0, width=0)
+        st.success("Sidebar opened! Choose your game 👇")
 
     st.markdown("---")
     st.subheader("Available Games:")
@@ -175,7 +141,6 @@ if page == "🏠 Home":
     st.write("🎆 **Firefly Festival** — Random bursts inspired by Poisson events.")
     st.markdown("---")
     st.info("Select a game from the left sidebar to start playing!")
-
 
 # 🎲 DICE DUEL
 
@@ -684,6 +649,7 @@ elif page == "🎆 Firefly Festival":
 
 
     
+
 
 
 
