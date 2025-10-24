@@ -112,35 +112,44 @@ if page == "🏠 Home":
     st.title("🎮 Welcome to Mini Game Hub")
     st.write("Choose a fun mini-game to play!")
 
-    # Sidebar auto-open trigger
-    if st.button("🎮 Click Here to Play Games 👈"):
-        # Inject JavaScript to click sidebar toggle button
-        components.html("""
-        <script>
-        const interval = setInterval(() => {
-          // Find the sidebar toggle button by aria-label
-          const btn = window.parent.document.querySelector('button[title="Toggle sidebar"]')
-              || window.parent.document.querySelector('button[aria-label="Toggle sidebar"]')
-              || window.parent.document.querySelector('button[title="Open sidebar"]');
-          if (btn) {
-            btn.click(); // simulate click
-            clearInterval(interval); // stop trying
-          }
-        }, 100);
-        </script>
-        """, height=0, width=0)
-        st.success("Sidebar opened! Choose your game 👇")
+    # Button to trigger sidebar-like game list
+    show_games = st.button("🎮 Click Here to Play Games 👈")
 
-    st.markdown("---")
-    st.subheader("Available Games:")
-    st.write("🎲 **Dice Duel** — Challenge a friend to a dice battle.")
-    st.write("☀️ **Weather Predictor** — Test your forecasting skills.")
-    st.write("🚪 **Monty Hall Challenge** — Choose wisely and test your logic.")
-    st.write("🪙 **Coin Toss Animation** — Experience randomness visually.")
-    st.write("🚗 **Traffic Rush** — Poisson arrival simulation.")
-    st.write("🎆 **Firefly Festival** — Random bursts inspired by Poisson events.")
-    st.markdown("---")
-    st.info("Select a game from the left sidebar to start playing!")
+    if show_games:
+        st.markdown("""
+        <div style="
+            border: 2px solid #00ccff;
+            border-radius: 12px;
+            padding: 20px;
+            background-color: rgba(0, 10, 30, 0.85);
+            box-shadow: 0 0 20px #00aaff;
+            animation: fadeIn 1s ease-in-out;
+        ">
+            <h3 style="color:#b3e0ff; text-shadow:0 0 10px #00ccff;">🎮 Choose Your Game</h3>
+            <ul style="list-style:none; line-height:2;">
+                <li>🎲 <b>Dice Duel</b> — Challenge a friend to a dice battle</li>
+                <li>☀️ <b>Weather Predictor</b> — Test your forecasting skills</li>
+                <li>🚪 <b>Monty Hall Challenge</b> — Make the right switch!</li>
+                <li>🪙 <b>Coin Toss Animation</b> — Experience random outcomes</li>
+                <li>🚗 <b>Traffic Rush</b> — Simulate Poisson arrivals</li>
+                <li>🎆 <b>Firefly Festival</b> — Random Poisson light bursts</li>
+            </ul>
+            <p style="color:#9ad5ff;">Use the sidebar (on the left) to select and start playing!</p>
+        </div>
+        <style>
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+        </style>
+        """, unsafe_allow_html=True)
+    else:
+        st.markdown("---")
+        st.subheader("Available Games:")
+        st.write("🎲 **Dice Duel** — Challenge a friend to a dice battle.")
+        st.write("☀️ **Weather Predictor** — Test your forecasting skills.")
+        st.markdown("---")
+        st.info("Select a game from the left sidebar to start playing!")
 
 # 🎲 DICE DUEL
 
@@ -649,6 +658,7 @@ elif page == "🎆 Firefly Festival":
 
 
     
+
 
 
 
